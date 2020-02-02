@@ -54,6 +54,7 @@ class ShoppingListApplication {
                 }
             } catch (Exception e) {
                 System.out.println("Error! Please try again.");
+                System.out.println(e.getMessage());
             }
         }
     }

@@ -1,5 +1,9 @@
 package com.javaguru.shoppinglist;
 
 public enum Category {
-    GOODS
+    GOODS,
+    STATIONARY,
+    FURNITURE,
+    GROCERY,
+    BEVERAGES
 }
