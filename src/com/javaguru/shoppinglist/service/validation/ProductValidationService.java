@@ -14,12 +14,6 @@ public class ProductValidationService {
     }
 
     public void validate(Product product) {
-        validationRules.forEach(s -> {
-            try {
-                s.validate(product);
-            } catch (ProductValidationException e) {
-                e.printStackTrace();
-            }
-        });
+        validationRules.forEach(s -> s.validate(product));
     }
 }
