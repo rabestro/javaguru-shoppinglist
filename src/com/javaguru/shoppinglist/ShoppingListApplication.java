@@ -21,16 +21,19 @@ class ShoppingListApplication {
                     case 1:
                         System.out.println("Enter product name: ");
                         String name = scanner.nextLine();
+                        
                         System.out.println("Enter product description: ");
                         String description = scanner.nextLine();
+                        
                         System.out.print("Enter product price: ");
                         BigDecimal price = scanner.nextBigDecimal();
-                        scanner.nextLine();
+                        
                         System.out.print("Enter product discount: ");
                         BigDecimal discount = scanner.nextBigDecimal();
-                        scanner.nextLine();
+                   
                         System.out.print("Enter product Category: ");
-                        Category category = Category.valueOf(scanner.nextLine());
+                        Category category = Category.valueOf(scanner.next());
+                        
                         Product product = new Product();
                         product.setName(name);
                         product.setPrice(price);
