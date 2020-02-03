@@ -32,7 +32,7 @@ class ShoppingListApplication {
                         BigDecimal discount = scanner.nextBigDecimal();
                    
                         System.out.print("Enter product Category: ");
-                        Category category = Category.valueOf(scanner.next());
+                        Category category = Category.valueOf(scanner.next().toUpperCase());
                         
                         Product product = new Product();
                         product.setName(name);
