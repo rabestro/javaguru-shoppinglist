@@ -21,25 +21,43 @@ class ShoppingListApplication {
                     case 1:
                         System.out.println("Enter product name: ");
                         String name = scanner.nextLine();
-                        System.out.println("Enter product price: ");
-                        BigDecimal price = new BigDecimal(scanner.nextLine());
+                        
+                        System.out.println("Enter product description: ");
+                        String description = scanner.nextLine();
+                        
+                        System.out.print("Enter product price: ");
+                        BigDecimal price = scanner.nextBigDecimal();
+                        
+                        System.out.print("Enter product discount: ");
+                        BigDecimal discount = scanner.nextBigDecimal();
+                   
+                        System.out.print("Enter product Category: ");
+                        Category category = Category.valueOf(scanner.next().toUpperCase());
+                        
                         Product product = new Product();
                         product.setName(name);
                         product.setPrice(price);
+                        product.setDescription(description);
+                        product.setDiscount(discount);
+                        product.setCategory(category);
+
                         product.setId(productIdSequence);
                         productRepository.put(productIdSequence, product);
                         productIdSequence++;
                         System.out.println("Result: " + product.getId());
+                        break;
                     case 2:
                         System.out.println("Enter product id: ");
                         long id = scanner.nextLong();
                         Product findProductResult = productRepository.get(id);
                         System.out.println(findProductResult);
+                        break;
                     case 3:
                         return;
                 }
             } catch (Exception e) {
                 System.out.println("Error! Please try again.");
+                System.out.println(e.getMessage());
             }
         }
     }
