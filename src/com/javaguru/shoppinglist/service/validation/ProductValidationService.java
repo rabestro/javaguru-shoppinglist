@@ -2,8 +2,24 @@ package com.javaguru.shoppinglist.service.validation;
 
 import com.javaguru.shoppinglist.domain.Product;
 
-public class ProductValidationService {
-    public void validate(Product product) {
+import java.util.HashSet;
+import java.util.Set;
 
+public class ProductValidationService {
+
+    private Set<ProductValidationRule> validationRules = new HashSet<>();
+
+    public ProductValidationService() {
+        validationRules.add(new ProductNameValidationRule());
+    }
+
+    public void validate(Product product) {
+        validationRules.forEach(s -> {
+            try {
+                s.validate(product);
+            } catch (ProductValidationException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
