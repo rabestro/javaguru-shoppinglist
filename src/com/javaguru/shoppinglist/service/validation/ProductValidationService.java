@@ -1,7 +1,6 @@
 package com.javaguru.shoppinglist.service.validation;
 
 import com.javaguru.shoppinglist.domain.Product;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +10,8 @@ public class ProductValidationService {
 
     public ProductValidationService() {
         validationRules.add(new ProductNameValidationRule());
+        validationRules.add(new ProductDiscountValidationRule());
+        validationRules.add(new ProductPriceValidationRule());
     }
 
     public void validate(Product product) {

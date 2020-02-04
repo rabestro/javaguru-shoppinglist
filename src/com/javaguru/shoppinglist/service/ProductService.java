@@ -5,7 +5,7 @@ import com.javaguru.shoppinglist.repository.ProductInMemoryRepository;
 import com.javaguru.shoppinglist.service.validation.ProductValidationService;
 
 public class ProductService {
-    private final ProductInMemoryRepository repository = new ProductInMemoryRepository();
+    private final ProductInMemoryRepository repository = ProductInMemoryRepository.getInstance();
     private final ProductValidationService validationService = new ProductValidationService();
 
     public Long createProduct(Product product) {
