@@ -17,7 +17,7 @@ public class ShoppingCart {
             final int count = list.get(product) + 1;
             list.put(product, count);
         } else {
-            list.put(product, 0);
+            list.put(product, 1);
         }
     }
 
