@@ -1,6 +1,7 @@
 package com.javaguru.shoppinglist.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Product {
 
@@ -9,6 +10,7 @@ public class Product {
     private BigDecimal price;
     private String description;
     private BigDecimal discount;
+    private Category category;
 
     public String getDescription() {
         return description;
@@ -23,11 +25,8 @@ public class Product {
     }
 
     public void setDiscount(BigDecimal discount) {
-        if (discount.compareTo(new BigDecimal(100)) <= 0) {
-            this.discount = discount;
-        } else {
-            throw new IllegalArgumentException("The discount cannot exceed the 100%");
-        }
+        this.discount = discount.setScale(2, RoundingMode.HALF_EVEN);
+
     }
 
     public Category getCategory() {
@@ -37,8 +36,6 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    private Category category;
 
     public Long getId() {
         return id;
@@ -53,12 +50,7 @@ public class Product {
     }
 
     public void setName(String name) {
-        if (name.length() >= 3 && name.length() <= 32) {
-            this.name = name;
-        } else {
-            throw new IllegalArgumentException(
-                    "The name cannot be shorter than 3 symbols or longer than 32 symbols");
-        }
+        this.name = name;
     }
 
     public BigDecimal getPrice() {
@@ -71,7 +63,5 @@ public class Product {
         } else {
             throw new IllegalArgumentException("Price must be nonzero positive");
         }
-
     }
-
 }

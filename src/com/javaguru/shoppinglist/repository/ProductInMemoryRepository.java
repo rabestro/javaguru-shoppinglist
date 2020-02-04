@@ -6,8 +6,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductInMemoryRepository {
-    private Long PRODUCT_ID_SEQUENCE = 0L;
-    private Map<Long, Product> productMap = new HashMap<>();
+    private static Long PRODUCT_ID_SEQUENCE = 0L;
+    private static Map<Long, Product> productMap = new HashMap<>();
+
+    private final static ProductInMemoryRepository database = new ProductInMemoryRepository();
+
+    private ProductInMemoryRepository() {
+
+    }
+
+    public static ProductInMemoryRepository getInstance() {
+        return database;
+    }
 
     public Product insert(Product product) {
         product.setId(PRODUCT_ID_SEQUENCE);
@@ -18,5 +28,9 @@ public class ProductInMemoryRepository {
 
     public Product findProductById(Long id) {
         return productMap.get(id);
+    }
+
+    public boolean containsProductName(String name) {
+        return productMap.entrySet().stream().anyMatch(p -> p.getValue().getName().equals(name));
     }
 }
