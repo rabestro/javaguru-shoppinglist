@@ -27,11 +27,18 @@ public class ShoppingCart {
 
     public BigDecimal getTotalPrice() {
         return list.entrySet().stream()
-                .map(i -> i.getKey().getPrice()
-                        .multiply(new BigDecimal(100).subtract(i.getKey().getDiscount()))
-                        .divide(new BigDecimal(100))
-                        .multiply(new BigDecimal(i.getValue())))
-                .reduce((a,b) -> a.add(b))
-                .get();
+                .map(i -> i.getKey().getActualPrice().multiply(new BigDecimal(i.getValue())))
+                .reduce((a,b) -> a.add(b)).get().setScale(2);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ShoppingCart{");
+        sb.append("name='").append(name).append('\'');
+        sb.append('}');
+        sb.append('\n');
+        list.entrySet().stream().forEach(i->sb.append(i.getKey().toString()).append('\n')
+                .append(i.getValue()).append('\n'));
+        return sb.toString();
     }
 }

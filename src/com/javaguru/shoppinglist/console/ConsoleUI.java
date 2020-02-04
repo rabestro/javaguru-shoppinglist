@@ -62,7 +62,7 @@ public class ConsoleUI {
     }
 
     private void printShoppingCart() {
-
+        shoppingCartService.printShoppingCart();
     }
 
     private void addProductToShoppingCart() {

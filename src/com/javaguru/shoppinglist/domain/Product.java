@@ -61,6 +61,13 @@ public class Product {
         this.price = price;
     }
 
+    public BigDecimal getActualPrice() {
+        final BigDecimal HUNDRED = new BigDecimal(100);
+        return price
+                .multiply(HUNDRED.subtract(discount))
+                .divide(HUNDRED,2,RoundingMode.HALF_EVEN);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Product{");
