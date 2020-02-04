@@ -19,6 +19,9 @@ public class ConsoleUI {
                 System.out.println("1. Create product");
                 System.out.println("2. Find product by id");
                 System.out.println("3. Create Shopping Cart");
+                System.out.println("4. Add product to the Shopping Cart");
+                System.out.println("5. Print Shopping Cart");
+                System.out.println("6. Calculate total price");
                 System.out.println("0. Exit");
 
                 final int userInput = scanner.nextInt();
@@ -34,6 +37,15 @@ public class ConsoleUI {
                     case 3:
                         createShoppingCart();
                         break;
+                    case 4:
+                        addProductToShoppingCart();
+                        break;
+                    case 5:
+                        printShoppingCart();
+                        break;
+                    case 6:
+                        calculateTotalPrice();
+                        break;
                     case 0:
                         scanner.close();
                         return;
@@ -43,6 +55,22 @@ public class ConsoleUI {
                 System.out.println(e.getMessage());
             }
         } while (true);
+    }
+
+    private void calculateTotalPrice() {
+        System.out.println(shoppingCartService.calculatePrice());
+    }
+
+    private void printShoppingCart() {
+
+    }
+
+    private void addProductToShoppingCart() {
+        System.out.println("Enter product id: ");
+        Long id = scanner.nextLong();
+        Product product = productService.findProductById(id);
+        shoppingCartService.addProduct(product);
+        System.out.println(product);
     }
 
     private void createShoppingCart() {
@@ -79,7 +107,7 @@ public class ConsoleUI {
     }
 
     private void findProduct() {
-        System.out.println("Enter task id: ");
+        System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
         Product product = productService.findProductById(id);
         System.out.println(product);
