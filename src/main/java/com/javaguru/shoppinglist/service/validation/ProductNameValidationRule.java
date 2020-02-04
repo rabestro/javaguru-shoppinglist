@@ -14,7 +14,7 @@ public class ProductNameValidationRule implements ProductValidationRule {
         } else if (product.getName().length() > 32) {
             throw new ProductValidationException("The name cannot be longer than 32 symbols");
         }
-        final var repository = ProductInMemoryRepository.getInstance();
+        final ProductInMemoryRepository repository = ProductInMemoryRepository.getInstance();
         if (repository.containsProductName(product.getName())) {
             throw new ProductValidationException("The name has to be unique");
         }
