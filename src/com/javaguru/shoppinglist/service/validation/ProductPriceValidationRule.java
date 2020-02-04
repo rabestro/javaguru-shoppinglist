@@ -9,7 +9,7 @@ public class ProductPriceValidationRule implements ProductValidationRule {
         if (product.getPrice() == null) {
             throw new ProductValidationException("Product price must be not null.");
         } else if (product.getPrice().signum() <= 0) {
-            throw new ProductValidationException("The price should be greater then 0");
+            throw new ProductValidationException("Price must be nonzero positive");
         }
     }
 }

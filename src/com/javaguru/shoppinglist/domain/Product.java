@@ -6,11 +6,11 @@ import java.math.RoundingMode;
 public class Product {
 
     private Long id;
-    private String name;
-    private BigDecimal price;
-    private String description;
-    private BigDecimal discount;
     private Category category;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private BigDecimal discount;
 
     public String getDescription() {
         return description;
@@ -58,10 +58,19 @@ public class Product {
     }
 
     public void setPrice(BigDecimal price) {
-        if (price.signum() == 1) {
-            this.price = price;
-        } else {
-            throw new IllegalArgumentException("Price must be nonzero positive");
-        }
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Product{");
+        sb.append(", id=").append(id);
+        sb.append("category=").append(category);
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", discount=").append(discount);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", price=").append(price);
+        sb.append('}');
+        return sb.toString();
     }
 }
