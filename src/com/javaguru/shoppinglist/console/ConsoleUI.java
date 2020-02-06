@@ -3,21 +3,30 @@ package com.javaguru.shoppinglist.console;
 import com.javaguru.shoppinglist.domain.Category;
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.ProductService;
+import com.javaguru.shoppinglist.service.ShoppingCartService;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class ConsoleUI {
-    private ProductService productService = new ProductService();
+    final private ProductService productService = new ProductService();
+    final private ShoppingCartService shoppingCartService = new ShoppingCartService();
+    final private Scanner scanner = new Scanner(System.in);
 
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+        do {
             try {
-                System.out.println("1. Create task");
-                System.out.println("2. Find task by id");
-                System.out.println("3. Exit");
-                int userInput = scanner.nextInt();
+                System.out.println("1. Create product");
+                System.out.println("2. Find product by id");
+                System.out.println("3. Create Shopping Cart");
+                System.out.println("4. Add product to the Shopping Cart");
+                System.out.println("5. Print Shopping Cart");
+                System.out.println("6. Calculate total price");
+                System.out.println("0. Exit");
+
+                final int userInput = scanner.nextInt();
+                scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
                 switch (userInput) {
                     case 1:
                         createProduct();
@@ -26,17 +35,51 @@ public class ConsoleUI {
                         findProduct();
                         break;
                     case 3:
+                        createShoppingCart();
+                        break;
+                    case 4:
+                        addProductToShoppingCart();
+                        break;
+                    case 5:
+                        printShoppingCart();
+                        break;
+                    case 6:
+                        calculateTotalPrice();
+                        break;
+                    case 0:
+                        scanner.close();
                         return;
                 }
             } catch (Exception e) {
                 System.out.println("Error! Please try again.");
                 System.out.println(e.getMessage());
             }
-        }
+        } while (true);
+    }
+
+    private void calculateTotalPrice() {
+        System.out.println(shoppingCartService.calculatePrice());
+    }
+
+    private void printShoppingCart() {
+        shoppingCartService.printShoppingCart();
+    }
+
+    private void addProductToShoppingCart() {
+        System.out.println("Enter product id: ");
+        Long id = scanner.nextLong();
+        Product product = productService.findProductById(id);
+        shoppingCartService.addProduct(product);
+        System.out.println(product);
+    }
+
+    private void createShoppingCart() {
+        System.out.println("Enter Shopping Cart name: ");
+        String name = scanner.nextLine();
+        shoppingCartService.createShoppingCart(name);
     }
 
     void createProduct() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product name: ");
         String name = scanner.nextLine();
 
@@ -61,12 +104,10 @@ public class ConsoleUI {
 
         Long id = productService.createProduct(product);
         System.out.println("Result: " + id);
-
     }
 
     private void findProduct() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter task id: ");
+        System.out.println("Enter product id: ");
         Long id = scanner.nextLong();
         Product product = productService.findProductById(id);
         System.out.println(product);
