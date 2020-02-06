@@ -25,8 +25,10 @@ public class Product {
     }
 
     public void setDiscount(BigDecimal discount) {
-        this.discount = discount.setScale(2, RoundingMode.HALF_EVEN);
-
+        this.discount = discount;
+        if (discount != null) {
+            this.discount = this.discount.setScale(2, RoundingMode.HALF_EVEN);
+        }
     }
 
     public Category getCategory() {
