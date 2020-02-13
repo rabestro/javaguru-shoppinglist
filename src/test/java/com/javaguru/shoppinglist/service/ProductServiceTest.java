@@ -34,7 +34,7 @@ class ProductServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        //productService = new ProductService(repository, validationService);
+        productService = new ProductService(repository, validationService);
         testProduct = new Product();
     }
     @DisplayName("Test of ProductServices.createProduct()")
