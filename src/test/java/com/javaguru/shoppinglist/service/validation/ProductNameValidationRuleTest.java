@@ -1,22 +1,34 @@
 package com.javaguru.shoppinglist.service.validation;
 
 import com.javaguru.shoppinglist.domain.Product;
+import com.javaguru.shoppinglist.repository.ProductInMemoryRepository;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Test of Product Name Validation")
+@ExtendWith(MockitoExtension.class)
 class ProductNameValidationRuleTest {
     Product productOne;
     ProductNameValidationRule validationRule;
 
+    @Mock
+    ProductInMemoryRepository repository;
+
     @BeforeEach
     void setUp() {
+        MockitoAnnotations.initMocks(this);
         productOne = new Product();
-        validationRule = new ProductNameValidationRule();
+        validationRule = new ProductNameValidationRule(repository);
     }
 
     @AfterEach

@@ -9,9 +9,13 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class ConsoleUI {
-    final private ProductService productService = new ProductService();
+    final private ProductService productService;
     final private ShoppingCartService shoppingCartService = new ShoppingCartService();
     final private Scanner scanner = new Scanner(System.in);
+
+    public ConsoleUI(ProductService service) {
+        productService = service;
+    }
 
     public void execute() {
         do {
