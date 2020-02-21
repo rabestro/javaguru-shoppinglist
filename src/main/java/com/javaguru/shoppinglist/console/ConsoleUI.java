@@ -4,6 +4,7 @@ import com.javaguru.shoppinglist.domain.Category;
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.ProductService;
 import com.javaguru.shoppinglist.service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class ConsoleUI {
     final private ShoppingCartService shoppingCartService = new ShoppingCartService();
     final private Scanner scanner = new Scanner(System.in);
 
+    @Autowired
     public ConsoleUI(ProductService service) {
         productService = service;
     }

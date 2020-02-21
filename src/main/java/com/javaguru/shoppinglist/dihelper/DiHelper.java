@@ -13,7 +13,7 @@ import java.util.HashSet;
 
 public class DiHelper {
     public static ConsoleUI createApplication() {
-        final var repository = ProductInMemoryRepository.getInstance();
+        final var repository = new ProductInMemoryRepository();
 
         final var rules = new HashSet<ProductValidationRule>();
         rules.add(new ProductNameValidationRule(repository));

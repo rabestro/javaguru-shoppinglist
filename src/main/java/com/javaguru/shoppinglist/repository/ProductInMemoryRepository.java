@@ -9,14 +9,10 @@ public class ProductInMemoryRepository {
     private static Long PRODUCT_ID_SEQUENCE = 0L;
     private static Map<Long, Product> productMap = new HashMap<>();
 
-    private final static ProductInMemoryRepository database = new ProductInMemoryRepository();
+    private final ProductInMemoryRepository database;
 
-    private ProductInMemoryRepository() {
-
-    }
-
-    public static ProductInMemoryRepository getInstance() {
-        return database;
+    public ProductInMemoryRepository() {
+        this.database = new ProductInMemoryRepository();
     }
 
     public Product insert(Product product) {
