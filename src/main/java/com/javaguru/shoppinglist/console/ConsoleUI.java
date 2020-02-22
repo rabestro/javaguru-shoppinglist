@@ -5,18 +5,21 @@ import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.ProductService;
 import com.javaguru.shoppinglist.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
+@Component
 public class ConsoleUI {
-    final private ProductService productService;
-    final private ShoppingCartService shoppingCartService = new ShoppingCartService();
     final private Scanner scanner = new Scanner(System.in);
+    final private ProductService productService;
+    final private ShoppingCartService shoppingCartService;
 
     @Autowired
-    public ConsoleUI(ProductService service) {
+    public ConsoleUI(ProductService service, ShoppingCartService shoppingCartService) {
         productService = service;
+        this.shoppingCartService = shoppingCartService;
     }
 
     public void execute() {
