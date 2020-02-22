@@ -9,12 +9,9 @@ import java.util.Map;
 @Component
 public class ProductInMemoryRepository {
     private static Long PRODUCT_ID_SEQUENCE = 0L;
-    private static Map<Long, Product> productMap = new HashMap<>();
-
-    private final ProductInMemoryRepository database;
+    private final Map<Long, Product> productMap = new HashMap<>();
 
     public ProductInMemoryRepository() {
-        this.database = new ProductInMemoryRepository();
     }
 
     public Product insert(Product product) {
