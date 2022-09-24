@@ -6,9 +6,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 class ShoppingListApplication {
 
     public static void main(String[] args) {
-
-        final var context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
-        final var consoleUI = context.getBean(ConsoleUI.class);
+        var context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+        var consoleUI = context.getBean(ConsoleUI.class);
         consoleUI.execute();
     }
 }

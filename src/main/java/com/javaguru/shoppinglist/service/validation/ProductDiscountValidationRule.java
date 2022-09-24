@@ -7,15 +7,16 @@ import java.math.BigDecimal;
 
 @Component
 public class ProductDiscountValidationRule implements ProductValidationRule {
+
     @Override
     public void validate(Product product) {
         checkNotNull(product);
         if (product.getDiscount() == null) {
             throw new ProductValidationException("Product discount must be not null.");
         }
-        final boolean isPriceBelow20 = product.getPrice().compareTo(new BigDecimal(20)) < 0;
-        final boolean isDiscount = product.getDiscount().signum() > 0;
-        final boolean isDiscountMore100 = product.getDiscount().compareTo(new BigDecimal(100)) > 0;
+        var isPriceBelow20 = product.getPrice().compareTo(new BigDecimal(20)) < 0;
+        var isDiscount = product.getDiscount().signum() > 0;
+        var isDiscountMore100 = product.getDiscount().compareTo(new BigDecimal(100)) > 0;
 
         if (product.getDiscount().signum() < 0) {
             throw new ProductValidationException("The discount cannot be less then 0%");

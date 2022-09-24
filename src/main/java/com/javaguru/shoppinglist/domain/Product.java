@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Product {
+    private static final BigDecimal HUNDRED = new BigDecimal(100);
 
     private Long id;
     private Category category;
@@ -64,22 +65,19 @@ public class Product {
     }
 
     public BigDecimal getActualPrice() {
-        final BigDecimal HUNDRED = new BigDecimal(100);
         return price
                 .multiply(HUNDRED.subtract(discount))
-                .divide(HUNDRED,2,RoundingMode.HALF_EVEN);
+                .divide(HUNDRED, 2, RoundingMode.HALF_EVEN);
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Product{");
-        sb.append("id=").append(id);
-        sb.append(", category=").append(category);
-        sb.append(", description='").append(description).append('\'');
-        sb.append(", discount=").append(discount);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", price=").append(price);
-        sb.append('}');
-        return sb.toString();
+        return "Product{" + "id=" + id +
+                ", category=" + category +
+                ", description='" + description + '\'' +
+                ", discount=" + discount +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

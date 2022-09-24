@@ -21,7 +21,7 @@ public class ProductService {
 
     public Long createProduct(Product product) {
         validationService.validate(product);
-        final Product createdProduct = repository.insert(product);
+        var createdProduct = repository.insert(product);
         return createdProduct.getId();
     }
 

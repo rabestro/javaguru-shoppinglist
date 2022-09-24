@@ -37,27 +37,15 @@ public class ConsoleUI {
                 scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
                 switch (userInput) {
-                    case 1:
-                        createProduct();
-                        break;
-                    case 2:
-                        findProduct();
-                        break;
-                    case 3:
-                        createShoppingCart();
-                        break;
-                    case 4:
-                        addProductToShoppingCart();
-                        break;
-                    case 5:
-                        printShoppingCart();
-                        break;
-                    case 6:
-                        calculateTotalPrice();
-                        break;
-                    case 0:
-                        scanner.close();
+                    case 1 -> createProduct();
+                    case 2 -> findProduct();
+                    case 3 -> createShoppingCart();
+                    case 4 -> addProductToShoppingCart();
+                    case 5 -> printShoppingCart();
+                    case 6 -> calculateTotalPrice();
+                    case 0 -> {
                         return;
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Error! Please try again.");
@@ -90,16 +78,16 @@ public class ConsoleUI {
 
     void createProduct() {
         System.out.println("Enter product name: ");
-        String name = scanner.nextLine();
+        var name = scanner.nextLine();
 
         System.out.println("Enter product description: ");
-        String description = scanner.nextLine();
+        var description = scanner.nextLine();
 
         System.out.print("Enter product price: ");
-        BigDecimal price = new BigDecimal(scanner.nextLine());
+        var price = new BigDecimal(scanner.nextLine());
 
         System.out.print("Enter product discount: ");
-        BigDecimal discount = new BigDecimal(scanner.nextLine());
+        var discount = new BigDecimal(scanner.nextLine());
 
         System.out.print("Enter product Category: ");
         Category category = Category.valueOf(scanner.nextLine().strip().toUpperCase());
